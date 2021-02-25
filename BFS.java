@@ -3,12 +3,13 @@ import java.util.*;
 public class BFS {
 	 public static int[][] ll;
 	public static int[][] aa;
-	public static Queue<Integer> q
+	public static stop_symbol = 9; //stop symbol
+	public static Queue<Integer> q // queue to store x coordinate
             = new LinkedList<>();
-					public static  Queue<Integer> r
+	public static  Queue<Integer> r // queue to store y coordinate
             = new LinkedList<>();
 	public static void main(String args[]) {
-	int[][] area = {{1,1,0,1,},{0,1,1,0},{0,0,1,1},{0,1,1,1},{0,0,1,1},{9,1,1,1}};
+	int[][] area = {{1,1,0,1,},{0,1,1,0},{0,0,1,1},{0,1,1,1},{0,0,1,1},{9,1,1,1}};   // the matrix in which distance is being calculated
 	ll = new int[6][4];
 	aa = new int[6][4];
 	for(int i=0;i<6;i++){
@@ -17,17 +18,17 @@ public class BFS {
 			aa[i][j] = 0;
 	}
 	}
-	System.out.println(minimumDistance(area,0,0));
+	System.out.println(minimumDistance(area,0,0)); // function is being called here with matrix , x and y coordinates.
 for(int i=0;i<6;i++){
 		
 			System.out.println(aa[i][0]+"\t"+aa[i][1]+"\t"+aa[i][2]+"\t"+aa[i][3]);
 	
 	}
 	}
-public static int minimumDistance(int[][] area,int i,int j){
+public static int minimumDistance(int[][] area,int i,int j){   //function body
 	System.out.println("on "+i+" "+j+" ----> ");
     ll[i][j] = 1;
-    if (area[i][j] == 9)
+    if (area[i][j] == stop_symbol)
          return aa[i][j];
     int counter = aa[i][j] + 1;
     if(((i+1)< 6) && ((area[i+1][j] == 1) || (area[i+1][j] == 9)) && (ll[i+1][j] == 0)){
